@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة النقاط</title>
+    <title>Points Page</title>
     <!-- إضافة مكتبة Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -94,6 +94,34 @@
         footer a:hover {
             text-decoration: underline;
         }
+        .welcome-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            z-index: 1000;
+            display: none;
+        }
+        .welcome-popup h2 {
+            margin-bottom: 10px;
+        }
+        .welcome-popup button {
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .welcome-popup button:hover {
+            background-color: #0077b3;
+        }
     </style>
 </head>
 <body>
@@ -136,6 +164,15 @@
         </a>
     </footer>
 
+    <div class="welcome-popup" id="welcomePopup">
+        <h2>Welcome, <span id="usernameDisplay"></span>!</h2>
+        <p>You have been credited with 20,000 points. Enjoy your journey with us!</p>
+        <button onclick="closePopup()">Get Started</button>
+    </div>
+
+    <!-- إضافة مكتبة Telegram Web Apps -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
     <script>
         const pointsDisplay = document.getElementById('pointsDisplay');
         let points = localStorage.getItem('points') ? parseInt(localStorage.getItem('points')) : 0;
@@ -145,7 +182,29 @@
             localStorage.setItem('points', points);
         }
 
+        // عرض النقاط مع إضافة الفاصلة للأرقام الكبيرة
         pointsDisplay.textContent = points.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        // تهيئة Telegram Web Apps
+        const tg = window.Telegram.WebApp;
+
+        // جلب اسم المستخدم من تلجرام
+        let username = tg.initDataUnsafe?.user?.username || 'Guest';
+
+        // حفظ اسم المستخدم في localStorage
+        localStorage.setItem('username', username);
+
+        // عرض اسم المستخدم في نافذة الترحيب
+        document.getElementById('usernameDisplay').textContent = username;
+
+        // إظهار نافذة الترحيب
+        const welcomePopup = document.getElementById('welcomePopup');
+        welcomePopup.style.display = 'block';
+
+        // دالة إغلاق نافذة الترحيب
+        function closePopup() {
+            welcomePopup.style.display = 'none';
+        }
     </script>
 
 </body>
