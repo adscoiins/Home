@@ -1,124 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADScoins - Welcome</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- إضافة مكتبة Font Awesome -->
+    <title>واجهة دخول ADScoins</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom right, #007bff, #00c6ff); /* Background gradient */
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
-            position: relative; /* لتحديد موضع الأيقونات بشكل عشوائي */
-            overflow: hidden; /* لمنع ظهور أي عناصر خارج الشاشة */
+            margin: 0;
+            overflow: hidden;
         }
-
         .container {
             text-align: center;
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            width: 90%; /* Container width */
-            max-width: 400px; /* Max width for larger screens */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            z-index: 1; /* لجعل الحاوية فوق الأيقونات */
+            width: 90%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-in-out;
+            z-index: 1; /* لجعل المحتوى في المقدمة */
         }
-
-        h1 {
-            margin: 10px 0;
-            font-size: 28px; /* Font size */
-            font-weight: bold; /* Bold font */
-            color: #333; /* Title color */
-        }
-
-        img {
-            max-width: 100%; /* Set image width to 100% */
-            height: auto; /* Maintain aspect ratio */
-            margin: 20px 0; /* Spacing around image */
-            border-radius: 10px; /* Rounded corners for images */
-        }
-
         .logo {
-            max-width: 80%; /* Logo width */
+            width: 60vw;
+            max-width: 180px;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite alternate;
         }
-
-        .ad-image {
-            max-width: 100%; /* Ad image width */
-            height: auto; /* Maintain aspect ratio */
+        .app-name {
+            font-size: 8vw;
+            max-font-size: 32px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            animation: slideIn 1s ease-in-out forwards;
+            opacity: 0;
         }
-
-        .toncoin-logo {
-            width: 50px; /* Width of Toncoin logo */
-            height: auto; /* Maintain aspect ratio */
-            margin-top: 20px; /* Margin above Toncoin logo */
+        .loader {
+            width: 100%;
+            height: 5px; /* ارتفاع شريط التحميل */
+            background: #fff; /* لون شريط التحميل */
+            margin-top: 10px; /* مسافة بين الاسم والشريط */
+            overflow: hidden;
+            position: relative;
         }
-
-        h2 {
-            color: #333; /* Subheading color */
-            font-size: 20px; /* Subheading font size */
-            margin-top: 20px; /* Margin above subheading */
-            animation: fadeIn 2s; /* Fade-in effect */
+        .progress {
+            height: 100%;
+            background: #0f0; /* لون التقدم */
+            width: 0;
+            transition: width 5s linear; /* انتقال سلس لشريط التحميل */
         }
-
-        .icon {
-            position: absolute; /* لتحديد موقع الأيقونات */
-            font-size: 40px; /* Icon size */
-            color: #ffffff; /* Icon color */
-            opacity: 0.8; /* Icon opacity */
-            transition: transform 0.3s ease; /* Transition effect */
-        }
-
-        .icon:hover {
-            transform: scale(1.2); /* تكبير الأيقونة عند التحويم */
-        }
-
-        /* عشوائية مواقع الأيقونات */
-        .icon1 { top: 10%; left: 5%; }
-        .icon2 { top: 20%; right: 10%; }
-        .icon3 { bottom: 20%; left: 15%; }
-        .icon4 { bottom: 10%; right: 5%; }
-        .icon5 { top: 30%; left: 40%; }
-        .icon6 { bottom: 25%; right: 30%; }
-        .icon7 { top: 40%; right: 40%; }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-10px);
+            }
+        }
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <img src="https://i.suar.me/1WAW3/l" alt="ADScoins Logo" class="logo"> <!-- Application logo -->
-        <h1>Welcome to ADScoins</h1>
-        <img src="https://i.suar.me/9Pmve/l" alt="ADScoins Advertisement" class="ad-image"> <!-- Advertisement image -->
-        <img src="https://cryptologos.cc/logos/toncoin-ton-logo.png" alt="Toncoin Logo" class="toncoin-logo"> <!-- Toncoin logo -->
-        <h2>Logging you in...</h2>
+        <img class="logo" src="https://i.suar.me/N2p44/l" alt="شعار ADScoins">
+        <div class="app-name">ADScoins</div>
+        <div class="loader">
+            <div class="progress"></div>
+        </div>
     </div>
 
-    <!-- إضافة الأيقونات العشوائية -->
-    <i class="fas fa-coins icon icon1" title="Earn ADScoins"></i>
-    <i class="fas fa-wallet icon icon2" title="Wallet for earnings"></i>
-    <i class="fas fa-gift icon icon3" title="Rewards and Bonuses"></i>
-    <i class="fas fa-chart-line icon icon4" title="Trading and Growth"></i>
-    <i class="fas fa-users icon icon5" title="Community"></i>
-    <i class="fas fa-bell icon icon6" title="Notifications"></i>
-    <i class="fas fa-star icon icon7" title="Achievements"></i>
-
     <script>
-        // Function to automatically log in after 5 seconds
-        setTimeout(() => {
-            window.location.href = "https://adscoiins.github.io/Let-s-go-/"; // Main page link
-        }, 5000); // 5000 milliseconds (5 seconds)
-    </script>
+        // إضافة تأثير الحركة لاسم التطبيق بعد تحميل الصفحة
+        window.onload = function() {
+            const appName = document.querySelector('.app-name');
+            appName.style.opacity = 1;
+            appName.style.animation = 'slideIn 1s ease-in-out forwards';
+            
+            // بدء شريط التحميل
+            const progressBar = document.querySelector('.progress');
+            progressBar.style.width = '100%';
 
+            // الانتقال إلى الصفحة المالية بعد 5 ثوانٍ
+            setTimeout(() => {
+                window.location.href = 'https://adscoiins.github.io/Home1/'; // الانتقال إلى الصفحة الرئيسية
+            }, 5000);
+        };
+    </script>
 </body>
 </html>
