@@ -27,7 +27,7 @@
             width: 90%;
             max-width: 400px;
             animation: fadeIn 1s ease-in-out;
-            z-index: 1; /* لجعل المحتوى في المقدمة */
+            z-index: 1;
         }
         .logo {
             width: 60vw;
@@ -45,19 +45,21 @@
         }
         .loader {
             width: 100%;
-            height: 5px; /* ارتفاع شريط التحميل */
-            background: #fff; /* لون شريط التحميل */
-            margin-top: 10px; /* مسافة بين الاسم والشريط */
+            height: 10px;
+            background: #333;
+            border-radius: 10px;
+            margin-top: 20px;
             overflow: hidden;
             position: relative;
         }
         .progress {
             height: 100%;
-            background: #0f0; /* لون التقدم */
+            background: linear-gradient(90deg, #00ff99, #00ccff);
             width: 0;
-            transition: width 5s linear; /* انتقال سلس لشريط التحميل */
+            border-radius: 10px;
+            box-shadow: 0 0 10px #00ff99, 0 0 20px #00ccff;
+            transition: width 5s linear;
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -96,19 +98,17 @@
     </div>
 
     <script>
-        // إضافة تأثير الحركة لاسم التطبيق بعد تحميل الصفحة
         window.onload = function() {
             const appName = document.querySelector('.app-name');
             appName.style.opacity = 1;
             appName.style.animation = 'slideIn 1s ease-in-out forwards';
-            
-            // بدء شريط التحميل
+
             const progressBar = document.querySelector('.progress');
             progressBar.style.width = '100%';
 
             // الانتقال إلى الصفحة المالية بعد 5 ثوانٍ
             setTimeout(() => {
-                window.location.href = 'https://adscoiins.github.io/Home1/'; // الانتقال إلى الصفحة الرئيسية
+                window.location.href = 'https://adscoiins.github.io/Home1/';
             }, 5000);
         };
     </script>
