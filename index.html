@@ -60,6 +60,12 @@
             box-shadow: 0 0 10px #00ff99, 0 0 20px #00ccff;
             transition: width 5s linear;
         }
+        .loading-text {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #00ff99;
+            animation: pulse 1.5s infinite;
+        }
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -86,6 +92,14 @@
                 opacity: 1;
             }
         }
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
     </style>
 </head>
 <body>
@@ -95,6 +109,7 @@
         <div class="loader">
             <div class="progress"></div>
         </div>
+        <div class="loading-text">Loading...</div>
     </div>
 
     <script>
